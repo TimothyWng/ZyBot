@@ -107,10 +107,43 @@ while animationDone == False:
 print('Finished animations...')
 print()
 
+# FILL IN THE BLANKS
 print('Filling in the blanks...')
 print()
-        
-        
+
+showAnswerButton = driver.find_elements(By.XPATH, "//button[contains(@class, 'show-answer-button')]")
+for answer in showAnswerButton:
+    # scroll to button
+    desired_y = (answer.size['height'] / 2) + answer.location['y']
+    window_h = driver.execute_script('return window.innerHeight')
+    window_y = driver.execute_script('return window.pageYOffset')
+    current_y = (window_h / 2) + window_y
+    scroll_y_by = desired_y - current_y
+    # double click
+    answer.click()
+    answer.click()
+    time.sleep(2)
+
+
+
+answers = driver.find_elements(By.XPATH, "//span[contains(@class, 'forfeit-answer')]")
+textFields = driver.find_elements(By.XPATH, "//textarea[contains(@class, 'ember-text-area')]")
+checkButtons = driver.find_elements(By.XPATH, "//button[contains(@class, 'check-button' and 'zb-button')]")
+print(checkButtons)
+for x in range(len(answers)):
+    # retrieve answer and store
+    finalAnswer = answers[x].text
+    #print(finalAnswer)
+    # insert answer into textbox
+    textFields[x].send_keys(finalAnswer)
+    # press CHECK
+
+    time.sleep(0.5)
+
+
+print('Finished blanks!')
+print()
+
 
 
 totChecks = totChecks + 1
