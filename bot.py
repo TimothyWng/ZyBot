@@ -21,7 +21,7 @@ driver = webdriver.Chrome(service=s, options=chrome_options)
 
 
 # Get website (STARTS LOGIN PAGE)
-driver.get("https://learn.zybooks.com/zybook/TAMUCSCE120-121-709Spring2023/chapter/8/section/5")
+driver.get("https://learn.zybooks.com/zybook/TAMUCSCE120-121-709Spring2023/chapter/8/section/15")
 print('Opening', driver.title,'...')
 print()
 # username
@@ -183,7 +183,7 @@ print('DONE')
 print()
 
 # ---- DONE ----
-time.sleep(15)
+time.sleep(3)
 print('Closing website...')
 driver.quit()
 
