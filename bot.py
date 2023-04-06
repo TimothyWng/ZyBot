@@ -21,7 +21,7 @@ driver = webdriver.Chrome(service=s, options=chrome_options)
 
 
 # Get website (STARTS LOGIN PAGE)
-driver.get("https://learn.zybooks.com/zybook/TAMUCSCE120-121-709Spring2023/chapter/8/section/3")
+driver.get("https://learn.zybooks.com/zybook/TAMUCSCE120-121-709Spring2023/chapter/8/section/1")
 print('Opening', driver.title,'...')
 print()
 driver.maximize_window()
@@ -47,7 +47,7 @@ for check in speedChecks:
     print('Clicking 2x check')
     button.click()
     totChecks += 1
-    time.sleep(1)
+    time.sleep(0.1)
 
 animationControl = driver.find_elements(By.CLASS_NAME, 'animation-controls')
 print("ANIMATION CONTROLS:", animationControl)
@@ -58,8 +58,7 @@ window_y = driver.execute_script('return window.pageYOffset')
 current_y = (window_h / 2) + window_y
 scroll_y_by = desired_y - current_y
 
-print('scrolled to top!')
-time.sleep(2)
+time.sleep(0.1)
 done = 0
 ndx = 1
 numActiveAnimations = len(animationControl)
@@ -73,7 +72,7 @@ while animationDone == False:
         window_y = driver.execute_script('return window.pageYOffset')
         current_y = (window_h / 2) + window_y
         scroll_y_by = desired_y - current_y
-        time.sleep(2) # 1 sec grace period before checking
+        time.sleep(0.5) # 1 sec grace period before checking
         # accesses button
         buttonStatus = animationControl[i].find_elements(By.XPATH, "//button[contains(@class, 'normalize-controls')]")
         
@@ -81,34 +80,30 @@ while animationDone == False:
         x = buttonStatus[ndx]
         actions = ActionChains(driver)
         actions.move_to_element(x).perform()
-        print("     ndx:",ndx)
+        #print("     ndx:",ndx)
         aria_label = x.get_attribute("aria-label")
         print("STATUS:", aria_label)
         if aria_label == 'Play again':
             numActiveAnimations -= 1
-            print("!!!!!!!!FINISHED ONE!!!!!!!!")
+            print("FINISHED ONE ANIMATION")
         elif aria_label == 'Play':
             print('Playing...')
             x.click()
-        time.sleep(2)
+        time.sleep(0.5)
         ndx += 2
 
         # COUNT HOW MANY DONE
         finishedCounter = 0
         for j in buttonStatus:
-            print('--Attribute', j.get_attribute("aria-label"))
+            #print('--Attribute', j.get_attribute("aria-label"))
             if j.get_attribute("aria-label") == 'Play again':
                 finishedCounter += 1
         # IF DONE
-        if finishedCounter == totChecks:
+        if finishedCounter == totChecks or numActiveAnimations == 0:
             animationDone = True
             break
-    
-        print("NUM ACTIVE:", numActiveAnimations)
-
-
+        #print("NUM ACTIVE:", numActiveAnimations)
     ndx = 1
-    time.sleep(1)
 print('Finished animations...')
 print()
 
