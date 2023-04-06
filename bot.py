@@ -21,7 +21,7 @@ driver = webdriver.Chrome(service=s, options=chrome_options)
 
 
 # Get website (STARTS LOGIN PAGE)
-driver.get("https://learn.zybooks.com/zybook/TAMUCSCE120-121-709Spring2023/chapter/8/section/3")
+driver.get("https://learn.zybooks.com/zybook/TAMUCSCE120-121-709Spring2023/chapter/8/section/5")
 print('Opening', driver.title,'...')
 print()
 # username
@@ -178,6 +178,8 @@ for qndx in range(len(questions)):
         time.sleep(1)
     
 print('Finished multiple choices!')
+print()
+print('DONE')
 print()
 
 # ---- DONE ----
