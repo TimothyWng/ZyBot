@@ -13,22 +13,23 @@ import time
 
 
 
-assignments = ['https://learn.zybooks.com/zybook/TAMUCSCE120-121-709Spring2023/chapter/8/section/1',
-               'https://learn.zybooks.com/zybook/TAMUCSCE120-121-709Spring2023/chapter/8/section/2',
-               'https://learn.zybooks.com/zybook/TAMUCSCE120-121-709Spring2023/chapter/8/section/3',
-               'https://learn.zybooks.com/zybook/TAMUCSCE120-121-709Spring2023/chapter/8/section/4',
-               'https://learn.zybooks.com/zybook/TAMUCSCE120-121-709Spring2023/chapter/8/section/5',
-               'https://learn.zybooks.com/zybook/TAMUCSCE120-121-709Spring2023/chapter/8/section/6',
-               'https://learn.zybooks.com/zybook/TAMUCSCE120-121-709Spring2023/chapter/8/section/7',
-               'https://learn.zybooks.com/zybook/TAMUCSCE120-121-709Spring2023/chapter/8/section/8',
-               'https://learn.zybooks.com/zybook/TAMUCSCE120-121-709Spring2023/chapter/8/section/9',
-               'https://learn.zybooks.com/zybook/TAMUCSCE120-121-709Spring2023/chapter/8/section/10',
-               'https://learn.zybooks.com/zybook/TAMUCSCE120-121-709Spring2023/chapter/8/section/11',
-               'https://learn.zybooks.com/zybook/TAMUCSCE120-121-709Spring2023/chapter/8/section/12',
-               'https://learn.zybooks.com/zybook/TAMUCSCE120-121-709Spring2023/chapter/8/section/13',
-               'https://learn.zybooks.com/zybook/TAMUCSCE120-121-709Spring2023/chapter/8/section/14',
-               'https://learn.zybooks.com/zybook/TAMUCSCE120-121-709Spring2023/chapter/8/section/15',
-               'https://learn.zybooks.com/zybook/TAMUCSCE120-121-709Spring2023/chapter/8/section/16'
+assignments = ['https://learn.zybooks.com/zybook/TAMUCSCE120-121-709Spring2023/chapter/10/section/1',
+               'https://learn.zybooks.com/zybook/TAMUCSCE120-121-709Spring2023/chapter/11/section/1',
+               'https://learn.zybooks.com/zybook/TAMUCSCE120-121-709Spring2023/chapter/11/section/2',
+               'https://learn.zybooks.com/zybook/TAMUCSCE120-121-709Spring2023/chapter/11/section/3',
+               'https://learn.zybooks.com/zybook/TAMUCSCE120-121-709Spring2023/chapter/11/section/4',
+               'https://learn.zybooks.com/zybook/TAMUCSCE120-121-709Spring2023/chapter/11/section/5',
+               'https://learn.zybooks.com/zybook/TAMUCSCE120-121-709Spring2023/chapter/11/section/6',
+               'https://learn.zybooks.com/zybook/TAMUCSCE120-121-709Spring2023/chapter/11/section/7',
+               'https://learn.zybooks.com/zybook/TAMUCSCE120-121-709Spring2023/chapter/11/section/8',
+               'https://learn.zybooks.com/zybook/TAMUCSCE120-121-709Spring2023/chapter/12/section/1',
+               'https://learn.zybooks.com/zybook/TAMUCSCE120-121-709Spring2023/chapter/12/section/2',
+               'https://learn.zybooks.com/zybook/TAMUCSCE120-121-709Spring2023/chapter/12/section/3',
+               'https://learn.zybooks.com/zybook/TAMUCSCE120-121-709Spring2023/chapter/12/section/4',
+               'https://learn.zybooks.com/zybook/TAMUCSCE120-121-709Spring2023/chapter/12/section/5',
+               'https://learn.zybooks.com/zybook/TAMUCSCE120-121-709Spring2023/chapter/12/section/6',
+               'https://learn.zybooks.com/zybook/TAMUCSCE120-121-709Spring2023/chapter/12/section/7',
+               'https://learn.zybooks.com/zybook/TAMUCSCE120-121-709Spring2023/chapter/12/section/8'            
                ]
 
 
@@ -46,11 +47,13 @@ for section in assignments:
     print('Opening', section,'...')
     print()
     # username
-    userSearch = driver.find_element(By.ID, "ember9")
-    userSearch.send_keys("timwng@tamu.edu")
+    userSearch = driver.find_element(By.XPATH, "//input[contains(@placeholder, 'Email')]")
+    # userSearch = driver.find_element(By.ID, "ember9")
+    userSearch.send_keys("timwng@tamu.edu") #joycesu@tamu.edu
     # password
-    passSearch = driver.find_element(By.ID, "ember11")
-    passSearch.send_keys("Kttw3972")
+    passSearch = driver.find_element(By.XPATH, "//input[contains(@placeholder, 'Password')]")
+    # passSearch = driver.find_element(By.ID, "ember11")
+    passSearch.send_keys("Kttw3972") #Joy373ce99*
     # ENTER
     passSearch.send_keys(Keys.RETURN)
     time.sleep(5) # wait for sign in
